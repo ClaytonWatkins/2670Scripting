@@ -1,6 +1,6 @@
 //Maya ASCII 2017 scene
 //Name: MovingBox.ma
-//Last modified: Mon, Sep 12, 2016 02:16:08 PM
+//Last modified: Mon, Sep 12, 2016 02:17:26 PM
 //Codeset: 1252
 requires maya "2017";
 currentUnit -l centimeter -a degree -t film;
@@ -77,6 +77,8 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".ai_translator" -type "string" "orthographic";
 createNode transform -n "pCube1";
 	rename -uid "94EA4BEB-40F3-E376-2D05-838AC29C5602";
+	setAttr ".t" -type "double3" 0 2.1431003370421875 4.6970807940685395 ;
+	setAttr -av ".ty";
 createNode mesh -n "pCubeShape1" -p "pCube1";
 	rename -uid "90753368-4027-C60D-6433-939183CD9F4E";
 	setAttr -k off ".v";
@@ -111,44 +113,44 @@ createNode polyCube -n "polyCube1";
 createNode animCurveTU -n "pCube1_visibility";
 	rename -uid "49CF7661-4233-8DC1-66AF-B4848E615056";
 	setAttr ".tan" 9;
-	setAttr -s 2 ".ktv[0:1]"  1 1 120 1;
-	setAttr -s 2 ".kot[0:1]"  5 5;
+	setAttr -s 3 ".ktv[0:2]"  1 1 51 1 120 1;
+	setAttr -s 3 ".kot[0:2]"  5 5 5;
 createNode animCurveTL -n "pCube1_translateX";
 	rename -uid "E8808F1E-49AF-3CB2-6A78-018F3BFA8E1F";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 0 120 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 51 0 120 0;
 createNode animCurveTL -n "pCube1_translateY";
 	rename -uid "399CC167-4652-4DC2-61EF-E68AC227B486";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 0 120 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 51 2.1431003370421875 120 0;
 createNode animCurveTL -n "pCube1_translateZ";
 	rename -uid "F7CD0D23-40B5-E472-115D-80A2D26D7748";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 0 120 12.319576619857584;
+	setAttr -s 3 ".ktv[0:2]"  1 0 51 4.6970807940685395 120 12.319576619857584;
 createNode animCurveTA -n "pCube1_rotateX";
 	rename -uid "BC09EF58-4C63-7D3A-39F1-B99C29745B02";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 0 120 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 51 0 120 0;
 createNode animCurveTA -n "pCube1_rotateY";
 	rename -uid "6B1E99CB-4795-0953-160C-2D8AC77F5C3E";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 0 120 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 51 0 120 0;
 createNode animCurveTA -n "pCube1_rotateZ";
 	rename -uid "6FCDA4C8-4928-7914-2749-CC8C295DC290";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 0 120 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 51 0 120 0;
 createNode animCurveTU -n "pCube1_scaleX";
 	rename -uid "55B50D2B-4F6C-E7B0-0E2E-5896F97E7E96";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 1 120 1;
+	setAttr -s 3 ".ktv[0:2]"  1 1 51 1 120 1;
 createNode animCurveTU -n "pCube1_scaleY";
 	rename -uid "55B3C575-4D14-0B39-B36C-33B04E11DA4E";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 1 120 1;
+	setAttr -s 3 ".ktv[0:2]"  1 1 51 1 120 1;
 createNode animCurveTU -n "pCube1_scaleZ";
 	rename -uid "84B2A670-4F4C-7DA9-299F-1FAE83B4E59A";
 	setAttr ".tan" 18;
-	setAttr -s 2 ".ktv[0:1]"  1 1 120 1;
+	setAttr -s 3 ".ktv[0:2]"  1 1 51 1 120 1;
 createNode script -n "uiConfigurationScriptNode";
 	rename -uid "9E822733-4A67-1011-D1BC-C9A375A58DAF";
 	setAttr ".b" -type "string" (
@@ -226,8 +228,8 @@ createNode script -n "sceneConfigurationScriptNode";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 120 -ast 1 -aet 200 ";
 	setAttr ".st" 6;
 select -ne :time1;
-	setAttr ".o" 1;
-	setAttr ".unw" 1;
+	setAttr ".o" 51;
+	setAttr ".unw" 51;
 select -ne :hardwareRenderingGlobals;
 	setAttr ".otfna" -type "stringArray" 22 "NURBS Curves" "NURBS Surfaces" "Polygons" "Subdiv Surface" "Particles" "Particle Instance" "Fluids" "Strokes" "Image Planes" "UI" "Lights" "Cameras" "Locators" "Joints" "IK Handles" "Deformers" "Motion Trails" "Components" "Hair Systems" "Follicles" "Misc. UI" "Ornaments"  ;
 	setAttr ".otfva" -type "Int32Array" 22 0 1 1 1 1 1
