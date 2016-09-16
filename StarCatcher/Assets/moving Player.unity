@@ -355,6 +355,8 @@ MonoBehaviour:
   jumpSpeed: 30
   jumpCount: 0
   jumpCountMax: 2
+  slideDuration: 50
+  slideTime: 0.01
 --- !u!143 &1832916725
 CharacterController:
   m_ObjectHideFlags: 0

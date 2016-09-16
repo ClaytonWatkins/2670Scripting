@@ -13,8 +13,36 @@ public class MoveCharacter : MonoBehaviour {
     public float jumpSpeed = 1;
     public int jumpCount = 0;
     public int jumpCountMax = 2;
-	// Update is called once per frame
-	void Update () {
+    //Sliding vars
+    public int slideDuration = 100;
+    public float slideTime = 0.01f;
+    //Coroutine for Sliding the character
+    IEnumerator Slide ()
+    {
+        //set a temp var to the value of slideDuration
+        int durationTemp = slideDuration;
+        //
+        float speedTemp = speed;
+        speed += speed;
+        //While loop runs "while" the slideDuration is greater than 0
+        while (slideDuration > 0)
+        {
+            //Decrement the sliderDuration
+            slideDuration--;
+            //yield "holds the coroutine"
+            //return "sends" to the coroutine to do an operation while yielding
+            //new creates an instance of an object
+            //WaitForSeconds is an object that waits for a duration of time
+            yield return new WaitForSeconds(slideTime);
+            
+        }
+        speed = speedTemp;
+        slideDuration = durationTemp;
+    }
+
+
+    // Update is called once per frame
+    void Update () {
         //waiting for input and compparing jumpcount
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < jumpCountMax-1)
         {
@@ -22,6 +50,18 @@ public class MoveCharacter : MonoBehaviour {
             jumpCount++;
             //adding the jumpSpeed var to the tempPos var
             tempPos.y = jumpSpeed;
+        }
+        //Start Sliding
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyDown(KeyCode.S))
+        {
+            //StartCoutine is a function that calls a coroutine. Use the corroutine in the argument
+            StartCoroutine(Slide());
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.S))
+        {
+            //StartCoutine is a function that calls a coroutine. Use the corroutine in the argument
+            StartCoroutine(Slide());
         }
 
         //test if the character controller is grounded
