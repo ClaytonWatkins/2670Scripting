@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/newNewFinalGameLevel_v72.unity
-  isLoaded: 1
-  isActive: 1
