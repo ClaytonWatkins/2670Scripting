@@ -4,9 +4,13 @@ using System;
 
 public class SendToRecycler : MonoBehaviour {
 
+    bool canRecycle;
+
     public static Action<SendToRecycler> SendThis;
 
+
 	void Start () {
-        SendThis(this);
+        if(canRecycle && SendThis != null)
+         SendThis(this);
 	}	
 }
