@@ -16,8 +16,16 @@ public class PlayerMovement : MonoBehaviour
         MoveUsingArrowKeys.RotateOnArrows -= Rotate;
     }
 
+    void StopScript ()
+    {
+        MoveUsingArrowKeys.MoveOnArrows -= Move;
+        MoveUsingArrowKeys.RotateOnArrows -= Rotate;
+    }
+
+
     void Start()
     {
+        EndGame.GameOver += StopScript;
         cc = GetComponent<CharacterController>();
         MoveUsingArrowKeys.MoveOnArrows += Move;
        // MoveUsingButtons.Forward += Move;
