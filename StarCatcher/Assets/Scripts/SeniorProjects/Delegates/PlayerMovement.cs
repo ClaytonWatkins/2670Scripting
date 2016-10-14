@@ -22,14 +22,19 @@ public class PlayerMovement : MonoBehaviour
         MoveUsingArrowKeys.RotateOnArrows -= Rotate;
     }
 
+    void StartGameHandler ()
+    {
+        MoveUsingArrowKeys.MoveOnArrows += Move;
+        GameControl.StartGame -= StartGameHandler;
+    }
 
     void Start()
     {
         EndGame.GameOver += StopScript;
         cc = GetComponent<CharacterController>();
-        MoveUsingArrowKeys.MoveOnArrows += Move;
+        GameControl.StartGame += StartGameHandler;
        // MoveUsingButtons.Forward += Move;
-        MoveUsingArrowKeys.RotateOnArrows += Rotate;
+        //MoveUsingArrowKeys.RotateOnArrows += Rotate;
         //MoveUsingButtons.Rotate += Rotate;
     }
 
@@ -41,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(float _moveInZ)
     {
-        //moveDirection.y -= gravity;
-        moveDirection.z = _moveInZ;
+        moveDirection.y -= gravity;
+        moveDirection.x = _moveInZ;
         moveDirection = transform.TransformDirection(moveDirection * speed * Time.deltaTime);
         cc.Move(moveDirection);
     }
