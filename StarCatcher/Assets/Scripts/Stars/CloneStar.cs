@@ -15,7 +15,6 @@ public class CloneStar : MonoBehaviour {
         while (canSpawnStars)
         {
             i = Random.Range(0, spawnPoints.Length - 1);
-            print(spawnPoints.Length);
             Instantiate(star, spawnPoints[i].position, Quaternion.identity);
             yield return new WaitForSeconds(spawnFrequency);
         }
